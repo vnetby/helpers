@@ -1,0 +1,20 @@
+{
+    "name": "vnetby/helpers",
+    "description": "A small library with helper classes",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Vnetby\\Helpers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vadzim Kananovich",
+            "email": "vadzim.kananovich.by@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4"
+    }
+}
