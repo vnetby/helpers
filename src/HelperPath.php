@@ -81,4 +81,15 @@ class HelperPath
         $path = preg_replace("/\/$/", '', $path);
         return $path;
     }
+
+
+    /**
+     * - Формирует абсолютный путь от корня проекта
+     * @param string[] ...$parts
+     * @return string
+     */
+    static function abs(...$parts): string
+    {
+        return self::join($_SERVER['DOCUMENT_ROOT'], ...$parts);
+    }
 }
