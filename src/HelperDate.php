@@ -5,7 +5,7 @@ namespace Vnetby\Helpers;
 class HelperDate
 {
 
-    private static $timeZone = null;
+    protected static $timeZone = null;
 
 
     /**
@@ -175,7 +175,7 @@ class HelperDate
      * @param callable $fn 
      * @return mixed 
      */
-    private static function utcFunc(callable $fn)
+    protected static function utcFunc(callable $fn)
     {
         self::$timeZone = date_default_timezone_get();
         self::setUtc();
@@ -185,12 +185,12 @@ class HelperDate
         return $val;
     }
 
-    private static function setUtc()
+    protected static function setUtc()
     {
         date_default_timezone_set('UTC');
     }
 
-    private static function restoreTimezone()
+    protected static function restoreTimezone()
     {
         date_default_timezone_set(self::$timeZone);
     }
