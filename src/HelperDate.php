@@ -5,9 +5,6 @@ namespace Vnetby\Helpers;
 class HelperDate
 {
 
-    protected static $timeZone = null;
-
-
     /**
      * - Форматирует дату
      *
@@ -177,21 +174,10 @@ class HelperDate
      */
     protected static function utcFunc(callable $fn)
     {
-        self::$timeZone = date_default_timezone_get();
-        self::setUtc();
-        $val = call_user_func($fn);
-        self::restoreTimezone();
-        self::$timeZone = null;
-        return $val;
-    }
-
-    protected static function setUtc()
-    {
+        $timeZone = date_default_timezone_get();
         date_default_timezone_set('UTC');
-    }
-
-    protected static function restoreTimezone()
-    {
-        date_default_timezone_set(self::$timeZone);
+        $val = call_user_func($fn);
+        date_default_timezone_set($timeZone);
+        return $val;
     }
 }
