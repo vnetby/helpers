@@ -14,7 +14,7 @@ class HelperDate
      */
     static function format(string $format, string $date): string
     {
-        return self::utcFunc(function () use ($format, $date) {
+        return static::utcFunc(function () use ($format, $date) {
             if (preg_match("/[\d]{4}[\d]{2}[\d]{2}/", $date)) {
                 $date = preg_replace("/([\d]{4})([\d]{2})([\d]{2})/", "$1-$2-$3", $date);
             }
@@ -46,12 +46,12 @@ class HelperDate
      */
     static function ruShortDate(string $date): string
     {
-        return self::utcFunc(function () use ($date) {
+        return static::utcFunc(function () use ($date) {
             $time = strtotime($date);
             $day = date('d', $time);
             $year = date('Y', $time);
             $thisYear = date('Y', time());
-            $month = self::getRuMoth(date('n', $time));
+            $month = static::getRuMoth(date('n', $time));
             if ($thisYear !== $year) {
                 return "{$day} {$month} {$year}";
             }
@@ -69,10 +69,10 @@ class HelperDate
      */
     static function ruShortDateRange(string $start, string $end): string
     {
-        return self::utcFunc(function () use ($start, $end) {
-            $endStr = self::ruShortDate($end);
+        return static::utcFunc(function () use ($start, $end) {
+            $endStr = static::ruShortDate($end);
             if (date('m', strtotime($start)) !== date('m', strtotime($end))) {
-                $startDay = self::ruShortDate($start);
+                $startDay = static::ruShortDate($start);
             } else {
                 $startDay = date('d', strtotime($start));
             }
@@ -90,9 +90,9 @@ class HelperDate
      */
     static function shortDateRange(string $start, string $end): string
     {
-        return self::utcFunc(function () use ($start, $end) {
-            $arrStart = [self::format('Y', $start), self::format('m', $start), self::format('d', $start)];
-            $arrEnd = [self::format('Y', $end), self::format('m', $end), self::format('d', $end)];
+        return static::utcFunc(function () use ($start, $end) {
+            $arrStart = [static::format('Y', $start), static::format('m', $start), static::format('d', $start)];
+            $arrEnd = [static::format('Y', $end), static::format('m', $end), static::format('d', $end)];
 
             if (($arrStart[0] !== $arrEnd[0]) && ($arrStart[1] !== $arrEnd[1]) && ($arrStart[2] !== $arrEnd[2])) {
                 return implode('.', array_reverse($arrStart)) . ' - ' . implode('.', array_reverse($arrEnd));
@@ -121,7 +121,7 @@ class HelperDate
      */
     static function addDays(string $date, int $days, string $format = 'Y-m-d'): string
     {
-        return self::utcFunc(function () use ($date, $days, $format) {
+        return static::utcFunc(function () use ($date, $days, $format) {
             return date($format, strtotime($date . ' + ' . $days . ' days'));
         });
     }
@@ -145,7 +145,7 @@ class HelperDate
             'Суббота'
         ];
 
-        return self::utcFunc(function () use ($date, $daysRu) {
+        return static::utcFunc(function () use ($date, $daysRu) {
             $numDay = date('w', strtotime($date));
             return $daysRu[$numDay];
         });
@@ -160,7 +160,7 @@ class HelperDate
      */
     static function toTime(string $date): int
     {
-        return self::utcFunc(function () use ($date) {
+        return static::utcFunc(function () use ($date) {
             return strtotime($date);
         });
     }

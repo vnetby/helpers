@@ -6,7 +6,7 @@ class HelperUrl
 {
     static function urlPhone(string $phone): string
     {
-        return 'tel:' . self::normalizePhone($phone);
+        return 'tel:' . static::normalizePhone($phone);
     }
 
     static function ulrEmail(string $email): string
@@ -16,7 +16,7 @@ class HelperUrl
 
     static function urlWhatsapp(string $phone): string
     {
-        $phone = self::normalizePhone($phone);
+        $phone = static::normalizePhone($phone);
         $phone = preg_replace("/^\+/", '', $phone);
         return 'https://api.whatsapp.com/send?phone=' . $phone;
     }

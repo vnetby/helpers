@@ -62,7 +62,7 @@ class HelperPath
     {
         $path = preg_replace("/^https?:\/\/[^\/]+/", '', $url);
         $absPath = $_SERVER['DOCUMENT_ROOT'];
-        return self::join($absPath, $path);
+        return static::join($absPath, $path);
     }
 
 
@@ -90,6 +90,6 @@ class HelperPath
      */
     static function abs(...$parts): string
     {
-        return self::join($_SERVER['DOCUMENT_ROOT'], ...$parts);
+        return static::join($_SERVER['DOCUMENT_ROOT'], ...$parts);
     }
 }

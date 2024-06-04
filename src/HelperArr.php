@@ -34,25 +34,25 @@ class HelperArr
 
     static function getPost($key, $def = false)
     {
-        return self::get($_POST, $key, $def);
+        return static::get($_POST, $key, $def);
     }
 
 
     static function getGet($key, $def = false)
     {
-        return self::get($_GET, $key, $def);
+        return static::get($_GET, $key, $def);
     }
 
 
     static function getRequest($key, $def = false)
     {
-        return self::get($_REQUEST, $key, $def);
+        return static::get($_REQUEST, $key, $def);
     }
 
 
     static function getServer($key, $def = false)
     {
-        return self::get($_SERVER, $key, $def);
+        return static::get($_SERVER, $key, $def);
     }
 
 
